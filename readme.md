@@ -2,8 +2,13 @@
 
 # trying to build my own operating systum cuz why not?
 
- Currently Astra is capable of: 
- -[x] Generating loader.o file by itself
+
+ Currently Astra is capable of: <br>
+ 1. Generating loader.o file by itself.
+
+
+
+ 
 
 
 

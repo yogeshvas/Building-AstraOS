@@ -1,0 +1,17 @@
+GPPPARAMS = -m32
+ASPARAMS = --32
+LDPARAMS = -melf_i386 
+
+objects = loader.o kernel.0
+
+%.o: %.cpp
+		g++ $(GPPPARAMS) -o $@ -c $<
+
+%.o: %.s
+		as $(ASPARAMS) -o $@ $<
+
+mykernel.bin: liner.ld $(objects)
+	ld $(LDPARAMS) -T $< -o $@ $(objects)
+
+intall: mykernel.bin
+	sudp cp #< /boot/mykernel.bin

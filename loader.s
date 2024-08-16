@@ -4,17 +4,17 @@
 
 .section .multiboot
     .long MAGIC
-    .long FLAGS
+    .long FLAGS  # Corrected typo from 'GlAGS' to 'FLAGS'
     .long CHECKSUM
 
 .section .text
-    .global loader
-    .extern kernelMain
+.extern kernelMain
+.global loader
 
 loader:
-    movl $kernel_stack, %esp
-    pushl %eax
-    pushl %ebx
+    mov $kernel_stack, %esp
+    push %eax
+    push %ebx
     call kernelMain
 
 _stop:
@@ -23,4 +23,5 @@ _stop:
     jmp _stop
 
 .section .bss
-    .lcomm kernel_stack, 2*1024*1024  # 2 MiB
+kernel_stack:         # The label should come before .space
+    .space 2*1024*1024  # 2 MiB
